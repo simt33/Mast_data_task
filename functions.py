@@ -37,19 +37,25 @@ def user_input(data, headers):
     print ("\n")
 
     if user_input_text == "1":
+        # prints bottom 5 records by rent.
         print (headers)
         [print (row) for row in bottom5_rent(data)]
         user_input(data, headers)
 
     elif user_input_text == "2":
+        # prints all records where lease = 25, as well as Total Current Rent.
         data_25yr_lease = get_25yr_lease(data)
         total_current_rent = sum([float(row[10]) for row in data_25yr_lease])
-        print (headers)
-        [print (row) for row in data_25yr_lease]
-        print ("\nTotal Current Rent: " + str(total_current_rent))
+        print(headers)
+        [print(row) for row in data_25yr_lease]
+        print("\nTotal Current Rent: " + str(total_current_rent))
 
     elif user_input_text == "3":
-        pass
+        # prints items from dictionary, in alphabetical order.
+        mast_dict = count_of_masts(data)
+
+        [print(str(value) + " : " + key) for key, value in sorted(mast_dict.items(), key=lambda item: item[0])]
+
     elif user_input_text == "4":
         pass
     else:
@@ -78,7 +84,16 @@ def get_25yr_lease(data):
 
     return data_lease
 
+
 def count_of_masts(data):
     """
     Returns a dictionary of tenant names against count of masts.
     """
+    masts_dict = {}
+    for row in data:
+        if row[6] in masts_dict.keys():
+            masts_dict[row[6]] += 1
+        else:
+            masts_dict[row[6]] = 1
+
+    return masts_dict

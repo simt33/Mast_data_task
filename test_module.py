@@ -52,8 +52,10 @@ class TestDataFunctions(unittest.TestCase):
     def test_count_of_masts(self):
         data_count_of_masts = count_of_masts(self.data)
         self.assertIsInstance(data_count_of_masts, dict)
-        self.assertEqual(data_count_of_masts['Company 2'], 3)
+        self.assertEqual(data_count_of_masts['Company2'], 3)
         self.assertEqual(len(data_count_of_masts.items()), 4)
+
+
 
 
 if __name__ == '__main__':
