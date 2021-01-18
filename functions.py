@@ -21,19 +21,19 @@ def read_into_csv(csv_file_name):
 
 def user_input(data, headers):
     """
-    Requests user input and calls appropriate function.
+    Requests user input and prints relevant information. Always recalls another user_input (apart from quit)
     """
 
     user_input_text = """
     
-    Please enter a number to continue
-    1. View bottom 5 records by current rent
-    2. View mast data where Lease = 25 years (including Total Current Rent)
-    3. View # of masts per tenant
-    4. View data for rentals where Lease Start date is between 1st June 1999 and 31st August 2007
-    5. Quit program
-    
-    >> """
+Please enter a number to continue
+1. View bottom 5 records by current rent
+2. View mast data where Lease = 25 years (including Total Current Rent)
+3. View # of masts per tenant
+4. View data for rentals where Lease Start date is between 1st June 1999 and 31st August 2007
+5. Quit program
+
+>> """
     user_input_text = input(user_input_text)
     print ("\n")
 
@@ -62,7 +62,7 @@ def user_input(data, headers):
 
         mast_dict = count_of_masts(data)
 
-        print (headers)
+        print("Number of masts per tenant: \n")
         [print(str(value) + " : " + key) for key, value in sorted(mast_dict.items(), key=lambda item: item[0])]
 
         user_input(data, headers)
@@ -73,8 +73,13 @@ def user_input(data, headers):
         print(headers)
         [print(row) for row in compare_dates(data)]
 
+        user_input(data, headers)
+
+    elif user_input_text == "5":
+        quit()
 
     else:
+        print("\nInvalid input")
         user_input(data, headers)
 
 

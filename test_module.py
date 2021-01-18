@@ -23,17 +23,19 @@ class TestDataFunctions(unittest.TestCase):
 
     def setUp(self):
         self.data = [
-            ['Rue Gilmotte', 'Paris', 'France','' ,'' , 'Unit1', 'Company1', '05 Jan 1993', '15 Jan 2008', '18', '12532.80'],
-            ['Rue Lafayette', 'Grenoble', 'France', 'Europe', '', 'Unit2', 'Company2', '25 Apr 1998', '15 Jan 2015', '69', '11331.20'],
+            ['Rue Gilmotte', 'Paris', 'France','' ,'' , 'Unit1', 'Company1', '05 Jan 1993', '15 Jan 2008',
+             '18', '12532.80'],
+            ['Rue Lafayette', 'Grenoble', 'France', 'Europe', '', 'Unit2', 'Company2', '25 Apr 1998', '15 Jan 2015',
+             '69', '11331.20'],
             ['Rue Perle', 'Lyon', 'France', 'Europe', '', 'Unit3', 'Company2', '01 Aug 1999', '30 Sep 2020',
              '45', '12903.00'],
             ['Calle de la Mancha', 'Spain', 'Madrid', 'Europe', '', 'Unit4', 'Company4', '25 Apr 1998', '15 Jan 2015',
              '55', '14214.00'],
             ['Calle de la Bruja', 'Spain', 'Valencia', '', '', 'Unit5', 'Company2', '10 Apr 2018', '18 Jul 2019',
              '25', '11452.23'],
-            ['Calle del sol', 'Spain', 'Salamanca', '', '', 'Unit6', 'Company1', '14 May 2000', '12 Jan 2017',
+            ['Calle del Sol', 'Spain', 'Salamanca', '', '', 'Unit6', 'Company1', '14 May 2000', '12 Jan 2017',
              '14', '14342.00'],
-            ['Calle del fuego', 'Spain', 'Barcelona', 'Europa', '', 'Unit7', 'Company6', '12 May 1998', '12 Jan 2016',
+            ['Calle del Fuego', 'Spain', 'Barcelona', 'Europa', '', 'Unit7', 'Company6', '12 May 1998', '12 Jan 2016',
              '25', '13314.00'],
         ]
 
@@ -58,7 +60,7 @@ class TestDataFunctions(unittest.TestCase):
     def test_compare_dates(self):
         data_compare_dates = compare_dates(self.data)
         self.assertEqual(len(data_compare_dates), 2)
-        self.assertEqual(data_compare_dates[0][0], 'Rue Perle''')
+        self.assertEqual(data_compare_dates[0][0], 'Rue Perle')
         self.assertEqual(data_compare_dates[1][10], '14342.00')
 
 
