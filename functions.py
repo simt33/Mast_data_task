@@ -44,3 +44,7 @@ def user_input():
         pass
     else:
         user_input()
+
+
+def bottom5_rent(data):
+    pass
