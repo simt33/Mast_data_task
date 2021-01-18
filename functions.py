@@ -77,3 +77,8 @@ def get_25yr_lease(data):
             data_lease.append(row)
 
     return data_lease
+
+def count_of_masts(data):
+    """
+    Returns a dictionary of tenant names against count of masts.
+    """

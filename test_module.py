@@ -49,6 +49,12 @@ class TestDataFunctions(unittest.TestCase):
         self.assertEqual(data_25yr_lease[0][0], 'Calle de la Bruja')
         self.assertEqual(data_25yr_lease[1][9], '25')
 
+    def test_count_of_masts(self):
+        data_count_of_masts = count_of_masts(self.data)
+        self.assertIsInstance(data_count_of_masts, dict)
+        self.assertEqual(data_count_of_masts['Company 2'], 3)
+        self.assertEqual(len(data_count_of_masts.items()), 4)
+
 
 if __name__ == '__main__':
     unittest.main()
