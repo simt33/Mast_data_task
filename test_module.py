@@ -15,7 +15,7 @@ class TestCSVImport(unittest.TestCase):
 
 class TestUserInput(unittest.TestCase):
     # My understanding is that unittest.mock can be used to mimic user input, but I'm not sure how this would
-    # be implemented, so I have left this section blank.
+    # be correctly implemented, so I have left this section blank.
     pass
 
 
@@ -23,7 +23,7 @@ class TestDataFunctions(unittest.TestCase):
 
     def setUp(self):
         self.data = [
-            ['Rue Gilmotte', 'Paris', 'France','' ,'' , 'Unit1', 'Company1', '05 Jan 1993', '15 Jan 2008',
+            ['Rue Gilmotte', 'Paris', 'France', '', '', 'Unit1', 'Company1', '05 Jan 1993', '15 Jan 2008',
              '18', '12532.80'],
             ['Rue Lafayette', 'Grenoble', 'France', 'Europe', '', 'Unit2', 'Company2', '25 Apr 1998', '15 Jan 2015',
              '69', '11331.20'],

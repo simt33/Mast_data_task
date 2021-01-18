@@ -7,10 +7,10 @@ def read_into_csv(csv_file_name):
     Takes a csv filename as an argument, reads this and returns 2 datasets: headers and rows(data).
     """
     with open(csv_file_name, 'r') as csv_file:
-        readCSV = csv.reader(csv_file, delimiter=',')
+        read_csv = csv.reader(csv_file, delimiter=',')
 
         data_raw = []
-        for row in readCSV:
+        for row in read_csv:
             data_raw.append(row)
 
         headers = data_raw[0]
@@ -21,7 +21,7 @@ def read_into_csv(csv_file_name):
 
 def user_input(data, headers):
     """
-    Requests user input and prints relevant information. Always recalls another user_input (apart from quit)
+    Requests user input and prints relevant information. Always recalls another user_input (apart from quit).
     """
 
     user_input_text = """
@@ -35,13 +35,13 @@ Please enter a number to continue
 
 >> """
     user_input_text = input(user_input_text)
-    print ("\n")
+    print("\n")
 
     if user_input_text == "1":
         # prints bottom 5 records by rent. Recalls user input.
 
-        print (headers)
-        [print (row) for row in bottom5_rent(data)]
+        print(headers)
+        [print(row) for row in bottom5_rent(data)]
 
         user_input(data, headers)
 
