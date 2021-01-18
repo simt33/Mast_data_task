@@ -1,4 +1,5 @@
 import csv
+from datetime import datetime
 
 
 def read_into_csv(csv_file_name):
@@ -37,27 +38,42 @@ def user_input(data, headers):
     print ("\n")
 
     if user_input_text == "1":
-        # prints bottom 5 records by rent.
+        # prints bottom 5 records by rent. Recalls user input.
+
         print (headers)
         [print (row) for row in bottom5_rent(data)]
+
         user_input(data, headers)
 
     elif user_input_text == "2":
-        # prints all records where lease = 25, as well as Total Current Rent.
+        # prints all records where lease = 25, as well as Total Current Rent. Recalls user input.
+
         data_25yr_lease = get_25yr_lease(data)
         total_current_rent = sum([float(row[10]) for row in data_25yr_lease])
+
         print(headers)
         [print(row) for row in data_25yr_lease]
         print("\nTotal Current Rent: " + str(total_current_rent))
 
+        user_input(data, headers)
+
     elif user_input_text == "3":
-        # prints items from dictionary, in alphabetical order.
+        # prints tenants and mast counts, in alphabetical order. Recalls user input
+
         mast_dict = count_of_masts(data)
 
+        print (headers)
         [print(str(value) + " : " + key) for key, value in sorted(mast_dict.items(), key=lambda item: item[0])]
 
+        user_input(data, headers)
+
     elif user_input_text == "4":
-        pass
+        # prints records where dates are between 01/06/1999 and 31/08/2007
+
+        print(headers)
+        [print(row) for row in compare_dates(data)]
+
+
     else:
         user_input(data, headers)
 
@@ -89,6 +105,7 @@ def count_of_masts(data):
     """
     Returns a dictionary of tenant names against count of masts.
     """
+
     masts_dict = {}
     for row in data:
         if row[6] in masts_dict.keys():
@@ -97,3 +114,25 @@ def count_of_masts(data):
             masts_dict[row[6]] = 1
 
     return masts_dict
+
+
+def compare_dates(data):
+    """
+    Returns a list of records where Lease Start Date is between 1st June 1999 and 31st August 2007. Converts all dates
+    to dd/mm/YYYY format.
+    """
+
+    min_date = datetime.strptime("01/06/1999", "%d/%m/%Y")
+    max_date = datetime.strptime("31/08/2007", "%d/%m/%Y")
+
+    data_by_date = []
+
+    for row in data:
+        date_start_lease = datetime.strptime(row[7], "%d %b %Y")
+        if min_date <= date_start_lease <= max_date:
+            date_end_lease = datetime.strptime(row[8], "%d %b %Y")
+            row[7] = datetime.strftime(date_start_lease, "%d/%m/%Y")
+            row[8] = datetime.strftime(date_end_lease, "%d/%m/%Y")
+            data_by_date.append(row)
+
+    return data_by_date

@@ -25,7 +25,7 @@ class TestDataFunctions(unittest.TestCase):
         self.data = [
             ['Rue Gilmotte', 'Paris', 'France','' ,'' , 'Unit1', 'Company1', '05 Jan 1993', '15 Jan 2008', '18', '12532.80'],
             ['Rue Lafayette', 'Grenoble', 'France', 'Europe', '', 'Unit2', 'Company2', '25 Apr 1998', '15 Jan 2015', '69', '11331.20'],
-            ['Rue Perle', 'Lyon', 'France', 'Europe', '', 'Unit3', 'Company2', '01 Apr 1999', '30 Sep 2020',
+            ['Rue Perle', 'Lyon', 'France', 'Europe', '', 'Unit3', 'Company2', '01 Aug 1999', '30 Sep 2020',
              '45', '12903.00'],
             ['Calle de la Mancha', 'Spain', 'Madrid', 'Europe', '', 'Unit4', 'Company4', '25 Apr 1998', '15 Jan 2015',
              '55', '14214.00'],
@@ -55,7 +55,11 @@ class TestDataFunctions(unittest.TestCase):
         self.assertEqual(data_count_of_masts['Company2'], 3)
         self.assertEqual(len(data_count_of_masts.items()), 4)
 
-
+    def test_compare_dates(self):
+        data_compare_dates = compare_dates(self.data)
+        self.assertEqual(len(data_compare_dates), 2)
+        self.assertEqual(data_compare_dates[0][0], 'Rue Perle''')
+        self.assertEqual(data_compare_dates[1][10], '14342.00')
 
 
 if __name__ == '__main__':
