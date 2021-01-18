@@ -43,6 +43,12 @@ class TestDataFunctions(unittest.TestCase):
         self.assertEqual(data_bottom5_rent[0][0], 'Rue Lafayette')
         self.assertEqual(data_bottom5_rent[1][10], '11452.23')
 
+    def test_25yr_lease(self):
+        data_25yr_lease = get_25yr_lease(self.data)
+        self.assertEqual(len(data_25yr_lease), 2)
+        self.assertEqual(data_25yr_lease[0][0], 'Calle de la Bruja')
+        self.assertEqual(data_25yr_lease[1][9], '25')
+
 
 if __name__ == '__main__':
     unittest.main()

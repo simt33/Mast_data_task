@@ -42,20 +42,38 @@ def user_input(data, headers):
         user_input(data, headers)
 
     elif user_input_text == "2":
-        pass
+        data_25yr_lease = get_25yr_lease(data)
+        total_current_rent = sum([float(row[10]) for row in data_25yr_lease])
+        print (headers)
+        [print (row) for row in data_25yr_lease]
+        print ("\nTotal Current Rent: " + str(total_current_rent))
+
     elif user_input_text == "3":
         pass
     elif user_input_text == "4":
         pass
     else:
-        user_input()
+        user_input(data, headers)
 
 
 def bottom5_rent(data):
     """
-    Returns the bottom 5 records by Current Rent
+    Returns the bottom 5 records by Current Rent.
     """
 
     sorted_data = sorted(data, key=lambda x: float(x[10]))
 
     return sorted_data[:5]
+
+
+def get_25yr_lease(data):
+    """
+    Returns all record where Lease is equal to 25 years.
+    """
+
+    data_lease = []
+    for row in data:
+        if int(row[9]) == 25:
+            data_lease.append(row)
+
+    return data_lease
