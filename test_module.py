@@ -39,7 +39,7 @@ class TestDataFunctions(unittest.TestCase):
 
     def test_bottom5_rent(self):
         data_bottom5_rent = bottom5_rent(self.data)
-        self.assertEqual(data_bottom5_rent.len(), 5)
+        self.assertEqual(len(data_bottom5_rent), 5)
         self.assertEqual(data_bottom5_rent[0][0], 'Rue Lafayette')
         self.assertEqual(data_bottom5_rent[1][10], '11452.23')
 

@@ -18,12 +18,13 @@ def read_into_csv(csv_file_name):
     return headers, data
 
 
-def user_input():
+def user_input(data, headers):
     """
     Requests user input and calls appropriate function.
     """
 
     user_input_text = """
+    
     Please enter a number to continue
     1. View bottom 5 records by current rent
     2. View mast data where Lease = 25 years (including Total Current Rent)
@@ -33,9 +34,13 @@ def user_input():
     
     >> """
     user_input_text = input(user_input_text)
+    print ("\n")
 
     if user_input_text == "1":
-        pass
+        print (headers)
+        [print (row) for row in bottom5_rent(data)]
+        user_input(data, headers)
+
     elif user_input_text == "2":
         pass
     elif user_input_text == "3":
@@ -47,4 +52,10 @@ def user_input():
 
 
 def bottom5_rent(data):
-    pass
+    """
+    Returns the bottom 5 records by Current Rent
+    """
+
+    sorted_data = sorted(data, key=lambda x: float(x[10]))
+
+    return sorted_data[:5]
