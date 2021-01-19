@@ -7,4 +7,4 @@ A small application which ingests mast data as a csv, and then allows user input
 3. Number of masts operated by each tenant, in alphabetical order
 4. Mast data where Lease Start date is between 1st June 1999 and 31st August 2007
 
-
+Launches from main.py 
