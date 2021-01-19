@@ -24,7 +24,7 @@ test_data_reformatted = [
 class TestCSVImport(unittest.TestCase):
 
     def setUp(self):
-        self.csv_file = "mock_data_IMPORT.csv"
+        self.csv_file = "data/mock_data_IMPORT.csv"
 
     def test_read_csv_into_lists_valid_headers(self):
         headers, data = read_csv_into_lists(self.csv_file)

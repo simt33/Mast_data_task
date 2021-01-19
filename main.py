@@ -1,7 +1,7 @@
 from functions import *
 
 
-csv_file = "Python Developer Test Dataset.csv"
+csv_file = "data/Python Developer Test Dataset.csv"
 
 headers, data = read_csv_into_lists(csv_file)
 reformat_dates(data)
