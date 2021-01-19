@@ -22,6 +22,7 @@ def read_into_csv(csv_file_name):
 def user_input(data, headers):
     """
     Requests user input and prints relevant information. Always recalls another user_input (apart from quit).
+    Takes arguments data (list) and headers (list).
     """
 
     user_input_text = """
@@ -85,7 +86,8 @@ Please enter a number to continue
 
 def bottom5_rent(data):
     """
-    Returns the bottom 5 records by Current Rent.
+    Returns the bottom 5 records by Current Rent as a list.
+    Takes in data as a list.
     """
 
     sorted_data = sorted(data, key=lambda x: float(x[10]))
@@ -95,7 +97,8 @@ def bottom5_rent(data):
 
 def get_25yr_lease(data):
     """
-    Returns all record where Lease is equal to 25 years.
+    Returns all record where Lease is equal to 25 years as a list.
+    Takes in data as a list.
     """
 
     data_lease = []
@@ -108,7 +111,8 @@ def get_25yr_lease(data):
 
 def count_of_masts(data):
     """
-    Returns a dictionary of tenant names against count of masts.
+    Returns a dictionary of tenant names against count of masts as a dictionary.
+    Takes data as a list.
     """
 
     masts_dict = {}
@@ -125,6 +129,7 @@ def compare_dates(data):
     """
     Returns a list of records where Lease Start Date is between 1st June 1999 and 31st August 2007. Converts all dates
     to dd/mm/YYYY format.
+    Takes data as a list.
     """
 
     min_date = datetime.strptime("01/06/1999", "%d/%m/%Y")
