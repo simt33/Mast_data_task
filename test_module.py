@@ -1,6 +1,6 @@
 import unittest
-import copy
 from functions import *
+
 
 # test_data is defined once and then pulled in by each data function to make dataset easy to modify if necessary
 test_data_reformatted = [
