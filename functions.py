@@ -16,6 +16,12 @@ def read_into_csv(csv_file_name):
         headers = data_raw[0]
         data = data_raw[1:]
 
+        for row in data:
+            date_start_lease = datetime.strptime(row[7], "%d %b %Y")
+            date_end_lease = datetime.strptime(row[8], "%d %b %Y")
+            row[7] = datetime.strftime(date_start_lease, "%d/%m/%Y")
+            row[8] = datetime.strftime(date_end_lease, "%d/%m/%Y")
+
     return headers, data
 
 
@@ -138,11 +144,8 @@ def compare_dates(data):
     data_by_date = []
 
     for row in data:
-        date_start_lease = datetime.strptime(row[7], "%d %b %Y")
+        date_start_lease = datetime.strptime(row[7], "%d/%m/%Y")
         if min_date <= date_start_lease <= max_date:
-            date_end_lease = datetime.strptime(row[8], "%d %b %Y")
-            row[7] = datetime.strftime(date_start_lease, "%d/%m/%Y")
-            row[8] = datetime.strftime(date_end_lease, "%d/%m/%Y")
             data_by_date.append(row)
 
     return data_by_date
