@@ -2,7 +2,7 @@ import csv
 from datetime import datetime
 
 
-def read_into_csv(csv_file_name):
+def read_csv_into_lists(csv_file_name):
     """
     Takes a csv filename as an argument, reads this and returns 2 datasets: headers and rows(data).
     """
@@ -16,13 +16,19 @@ def read_into_csv(csv_file_name):
         headers = data_raw[0]
         data = data_raw[1:]
 
-        for row in data:
-            date_start_lease = datetime.strptime(row[7], "%d %b %Y")
-            date_end_lease = datetime.strptime(row[8], "%d %b %Y")
-            row[7] = datetime.strftime(date_start_lease, "%d/%m/%Y")
-            row[8] = datetime.strftime(date_end_lease, "%d/%m/%Y")
-
     return headers, data
+
+
+def reformat_dates(data):
+    """
+    Reformats dates from '01 Jun 2000' to '01/06/2000'.
+    Takes in data as a list.
+    """
+    for row in data:
+        date_start_lease = datetime.strptime(row[7], "%d %b %Y")
+        date_end_lease = datetime.strptime(row[8], "%d %b %Y")
+        row[7] = datetime.strftime(date_start_lease, "%d/%m/%Y")
+        row[8] = datetime.strftime(date_end_lease, "%d/%m/%Y")
 
 
 def user_input(data, headers):
@@ -37,57 +43,51 @@ Please enter a number to continue
 1. View bottom 5 records by current rent
 2. View mast data where Lease = 25 years (including Total Current Rent)
 3. View # of masts per tenant
-4. View data for rentals where Lease Start date is between 1st June 1999 and 31st August 2007
+4. View all records where Lease Start date is between 1st June 1999 and 31st August 2007
 5. Quit program
 
 >> """
-    user_input_text = input(user_input_text)
-    print("\n")
 
-    if user_input_text == "1":
-        # prints bottom 5 records by rent. Recalls user input.
+    while True:
 
-        print(headers)
-        [print(row) for row in bottom5_rent(data)]
+        user_input_response = input(user_input_text)
+        print("\n")
 
-        user_input(data, headers)
+        if user_input_response == "1":
+            # prints bottom 5 records by rent. Recalls user input.
 
-    elif user_input_text == "2":
-        # prints all records where lease = 25, as well as Total Current Rent. Recalls user input.
+            print(headers)
+            [print(row) for row in bottom5_rent(data)]
 
-        data_25yr_lease = get_25yr_lease(data)
-        total_current_rent = sum([float(row[10]) for row in data_25yr_lease])
+        elif user_input_response == "2":
+            # prints all records where lease = 25, as well as Total Current Rent. Recalls user input.
 
-        print(headers)
-        [print(row) for row in data_25yr_lease]
-        print("\nTotal Current Rent: " + str(total_current_rent))
+            data_25yr_lease = get_25yr_lease(data)
+            total_current_rent = sum([float(row[10]) for row in data_25yr_lease])
 
-        user_input(data, headers)
+            print(headers)
+            [print(row) for row in data_25yr_lease]
+            print("\nTotal Current Rent: " + str(total_current_rent))
 
-    elif user_input_text == "3":
-        # prints tenants and mast counts, in alphabetical order. Recalls user input
+        elif user_input_response == "3":
+            # prints tenants and mast counts, in alphabetical order. Recalls user input.
 
-        mast_dict = count_of_masts(data)
+            mast_dict = count_of_masts(data)
 
-        print("Number of masts per tenant: \n")
-        [print(str(value) + " : " + key) for key, value in sorted(mast_dict.items(), key=lambda item: item[0])]
+            print("Number of masts per tenant: \n")
+            [print(str(value) + " : " + key) for key, value in sorted(mast_dict.items(), key=lambda item: item[0])]
 
-        user_input(data, headers)
+        elif user_input_response == "4":
+            # prints records where dates are between 01/06/1999 and 31/08/2007. Recalls user input.
 
-    elif user_input_text == "4":
-        # prints records where dates are between 01/06/1999 and 31/08/2007
+            print(headers)
+            [print(row) for row in compare_dates(data)]
 
-        print(headers)
-        [print(row) for row in compare_dates(data)]
+        elif user_input_response == "5":
+            quit()
 
-        user_input(data, headers)
-
-    elif user_input_text == "5":
-        quit()
-
-    else:
-        print("\nInvalid input")
-        user_input(data, headers)
+        else:
+            print("\nInvalid input")
 
 
 def bottom5_rent(data):
