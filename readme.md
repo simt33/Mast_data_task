@@ -1,4 +1,4 @@
-##### Mast Data Task
+### Mast Data Task
 
 A small application which ingests mast data as a csv, and then allows user input to display certain subsets of this data. 
 
